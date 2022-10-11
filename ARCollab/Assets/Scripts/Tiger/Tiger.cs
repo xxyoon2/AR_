@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Tiger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Die()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        gameObject.SetActive(false);
+        // 애니메이션 설정도 여기서 한다.
     }
 }
