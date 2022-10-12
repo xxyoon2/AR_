@@ -12,15 +12,14 @@ public enum TigerState
 public class TigerMovement : MonoBehaviour
 {
     public float TigerSpeed = 0.2f;
-    private TigerState _tigerState;
-
-    Vector3 destination = new Vector3(0, 0, 0);
     
+    private TigerState _tigerState;
 
     private void Start()
     {
         //_tigerState = TigerState.Idel;
         _tigerState = TigerState.Run;
+        GameManager.Instance.CanObjectInteraction.AddListener(BacktoStartPos);
     }
 
     void Update()
@@ -30,4 +29,10 @@ public class TigerMovement : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, GameManager.Instance.PlayerPos , TigerSpeed);   
         }
     }
+
+    bool BacktoStartPos(bool _isBump)
+    {
+
+    }
+
 }

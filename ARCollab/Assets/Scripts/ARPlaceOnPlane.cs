@@ -10,6 +10,12 @@ public class ARPlaceOnPlane : MonoBehaviour
     public GameObject TigerPrefab;
 
     private GameObject _spawnObject;
+    private Pose _startPos;
+
+    private void Start()
+    {
+        GameManager.Instance.CanObjectInteraction.AddListener(BacktoStartPos);
+    }
 
     private void Update()
     {
@@ -26,16 +32,27 @@ public class ARPlaceOnPlane : MonoBehaviour
             if (arRaycaster.Raycast(touch.position, hits, TrackableType.Planes))
             {
                 Pose hitPose = hits[0].pose;
+                _startPos = hitPose;
                 if(!_spawnObject)
                 {
                     _spawnObject = Instantiate(TigerPrefab, hitPose.position, hitPose.rotation);
                 }
-                else
-                {
-                    _spawnObject.transform.position = hitPose.position;
-                    _spawnObject.transform.LookAt(GameManager.Instance.PlayerPos);
-                }
+                //else
+                //{
+                //    _spawnObject.transform.position = hitPose.position;
+                //    _spawnObject.transform.LookAt(GameManager.Instance.PlayerPos);
+                //}
             }
+        }
+    }
+
+    // 특정 오브젝트와 거리가 가까워졌을 경우 시작점으로 돌아감
+    void BacktoStartPos(bool isBump)
+    {
+        if (isBump)
+        {
+            _spawnObject.transform.position = _startPos.position;
+            _spawnObject.transform.rotation = _startPos.rotation;
         }
     }
 }
