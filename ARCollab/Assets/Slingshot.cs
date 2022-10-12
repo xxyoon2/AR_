@@ -16,6 +16,7 @@ public class Slingshot : MonoBehaviour
 
     [SerializeField]
     private float _distAheadOffset = 0.5f;
+    private float _pullbackPercent = 0f;
 
     private void Awake()
     {
@@ -51,7 +52,7 @@ public class Slingshot : MonoBehaviour
         pelletWorldTransform.localScale = pelletInfo.localScale;
         pelletWorldTransform.parent = null;
         pelletWorldTransform.gameObject.tag = "Pellet";
-        pelletWorldTransform.transform.position = new Vector3(999, 999, 999);
+        pelletWorldTransform.transform.position = new Vector3(0, 0.02f, 0.4f);
 
         return pelletWorldTransform.gameObject.AddComponent<Pellet>();
     }
@@ -60,4 +61,5 @@ public class Slingshot : MonoBehaviour
     {
 
     }
+
 }

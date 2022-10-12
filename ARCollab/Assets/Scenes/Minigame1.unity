@@ -148,8 +148,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5131333}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.000092543, y: -0.23, z: 0.31}
+  m_LocalScale: {x: 2.8346, y: 2.8346, z: 2.8346}
   m_Children:
   - {fileID: 2113810591}
   - {fileID: 1723977808}
@@ -169,6 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d066d2fbf4437e4cad25bedda8ccd41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Pellet: {fileID: 3546987923170299118, guid: b4e4582635242a44ab4bb7f7cadf3174, type: 3}
+  _distAheadOffset: 0.5
 --- !u!1 &395039829
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,11 +848,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3546987923170299106, guid: b4e4582635242a44ab4bb7f7cadf3174, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.345
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 3546987923170299106, guid: b4e4582635242a44ab4bb7f7cadf3174, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.676
+      value: 0.402
       objectReference: {fileID: 0}
     - target: {fileID: 3546987923170299106, guid: b4e4582635242a44ab4bb7f7cadf3174, type: 3}
       propertyPath: m_LocalRotation.w
@@ -883,6 +885,10 @@ PrefabInstance:
     - target: {fileID: 3546987923170299118, guid: b4e4582635242a44ab4bb7f7cadf3174, type: 3}
       propertyPath: m_Name
       value: Pellet
+      objectReference: {fileID: 0}
+    - target: {fileID: 3546987923170299118, guid: b4e4582635242a44ab4bb7f7cadf3174, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4e4582635242a44ab4bb7f7cadf3174, type: 3}
