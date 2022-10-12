@@ -11,8 +11,10 @@ public enum TigerState
 
 public class Tiger : MonoBehaviour
 {
-    public float TigerSpeed = 0.2f;
+    public DebugLog Log;
 
+    public float TigerSpeed = 0.05f;
+    private float gravity = -9.8f;
     private Animator _tigerAnimator;
     //private TigerState _tigerState;
 
@@ -20,6 +22,7 @@ public class Tiger : MonoBehaviour
     {
         //_tigerState = TigerState.Idel;
         //_tigerState = TigerState.Run;
+        _tigerAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -42,14 +45,12 @@ public class Tiger : MonoBehaviour
         }
     }
 
-
     private void MoveToPlayer()
     {
-        transform.position = Vector3.MoveTowards(transform.position, GameManager.Instance.PlayerPos, TigerSpeed);
+        Quaternion dir = Quaternion.LookRotation(GameManager.Instance.PlayerPos - transform.position);
+        Vector3 angle = Quaternion.RotateTowards(transform.rotation, dir, 200 * Time.deltaTime).eulerAngles;
+        transform.rotation = Quaternion.Euler(0, angle.y, 0);
+        transform.Translate(Vector3.forward * Time.deltaTime);
         _tigerAnimator.SetBool("Run Forward", true);
-        ChangeState(TigerState.Run);
     }
-
-
-    
 }
