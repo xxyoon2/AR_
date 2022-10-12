@@ -33,6 +33,7 @@ public class ARPlaceOnPlane : MonoBehaviour
             {
                 Pose hitPose = hits[0].pose;
                 _startPos = hitPose;
+
                 if(!_spawnObject)
                 {
                     _spawnObject = Instantiate(TigerPrefab, hitPose.position, hitPose.rotation);
