@@ -30,8 +30,28 @@ public class Slingshot : MonoBehaviour
     private float _distAhead = 1.84f;
     private void Start()
     {
-        UpdatePullbackVisuals();
         SetSlingshotInFrontOfCamera();
+    }
+
+    private void Update()
+    {
+        if(Input.touchCount > 0)
+        {
+            RaycastHit hit;
+            Touch touch = Input.GetTouch(0);
+            Ray ray = _camera.ScreenPointToRay(touch.position);
+
+            Physics.Raycast(ray, out hit);
+
+            if(hit.collider.gameObject == _pellet)
+            {
+                _pellet.ShootWithSpeedAtCurrentRotation(0.5f);
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 
     void SetSlingshotInFrontOfCamera()
@@ -57,7 +77,7 @@ public class Slingshot : MonoBehaviour
         return pelletWorldTransform.gameObject.AddComponent<Pellet>();
     }
 
-    void UpdatePullbackVisuals()
+    void Shoot()
     {
 
     }
