@@ -29,7 +29,7 @@ public class PlayerBehaviour : MonoBehaviour
 
             ray = _camera.ScreenPointToRay(touch.position);
 
-            // 범위 제한과 레이어 마스크 구분으로 터치 가능한 오브젝트만 인식하기
+            // 범위 내에서 터치 가능한 오브젝트만 인식하기
             float distance = 5f;
             if (Physics.Raycast(ray, out hit, distance))
             {
