@@ -18,10 +18,12 @@ public class Pellet : MonoBehaviour
         _rigidBody.drag = 1f;
         _rigidBody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         _sphereCollider.radius = transform.localScale.x * 3.8f;
+
+        GameManager.Instance.LetPlayerShoot.AddListener(ShootWithSpeedAtCurrentRotation);
     }
 
     // 컴포넌트에 rigidBody가 포함되어 있으면 총알 발사
-    public void ShootWithSpeedAtCurrentRotation(float speedPercent)
+    private void ShootWithSpeedAtCurrentRotation(float speedPercent)
     {
         if (_rigidBody == null) return;
 

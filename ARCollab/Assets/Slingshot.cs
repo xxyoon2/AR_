@@ -87,7 +87,7 @@ public class Slingshot : MonoBehaviour
 
     void Shoot()
     {
-        _pellet.ShootWithSpeedAtCurrentRotation(5f);
+        GameManager.Instance.ShootPellet(4f);
     }
 
 }

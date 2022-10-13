@@ -11,6 +11,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     public UnityEvent<bool> CanObjectInteraction = new UnityEvent<bool>();
 
     public UnityEvent RespawnPellet = new UnityEvent();
+    public UnityEvent<float> LetPlayerShoot = new UnityEvent<float>();
 
     public Vector3 PlayerPos
     {
@@ -58,6 +59,11 @@ public class GameManager : SingletonBehaviour<GameManager>
             _isUserCloseToObject = false;
         }
         CanObjectInteraction.Invoke(_isUserCloseToObject);
+    }
+
+    public void ShootPellet(float speedPercent)
+    {
+        LetPlayerShoot.Invoke(speedPercent);
     }
 
     public void PelletSpawn()
