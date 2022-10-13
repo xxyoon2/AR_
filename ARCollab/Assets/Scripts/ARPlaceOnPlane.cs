@@ -6,11 +6,10 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ARPlaceOnPlane : MonoBehaviour
 {
-    public ARRaycastManager arRaycaster;
-    public GameObject TigerPrefab;
+    public ARRaycastManager ArRaycaster;
+    public GameObject SpawnObject;
 
     private GameObject _spawnObject;
-    private Pose _startPos;
 
     private void Start()
     {
@@ -22,6 +21,8 @@ public class ARPlaceOnPlane : MonoBehaviour
         PlaceTigerByTouch();
     }
 
+    // 모바일 화면 터치 시, 터치 부분에 오브젝트를 생성하는 함수
+    // 배치된 오브젝트는 플레이어를 바라봄
     private void PlaceTigerByTouch()
     {
         if(Input.touchCount > 0)
@@ -29,14 +30,13 @@ public class ARPlaceOnPlane : MonoBehaviour
             Touch touch = Input.GetTouch(0);
 
             List<ARRaycastHit> hits = new List<ARRaycastHit>();
-            if (arRaycaster.Raycast(touch.position, hits, TrackableType.Planes))
+            if (ArRaycaster.Raycast(touch.position, hits, TrackableType.Planes))
             {
                 Pose hitPose = hits[0].pose;
-                _startPos = hitPose;
 
                 if(!_spawnObject)
                 {
-                    _spawnObject = Instantiate(TigerPrefab, hitPose.position, hitPose.rotation);
+                    _spawnObject = Instantiate(SpawnObject, hitPose.position, hitPose.rotation);
                 }
                 else
                 {
