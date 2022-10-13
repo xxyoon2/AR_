@@ -5,36 +5,26 @@ using UnityEngine;
 public class Slingshot : MonoBehaviour
 {
     public GameObject Pellet;
-
     private Camera _camera;
+    
     public Vector3 PelletLocalOrigin { get {return _pelletLocalOrigin; }}
     private Vector3 _pelletLocalOrigin;
-
-    private Vector3 _slingshotPos;
+    
     private Pellet _pellet;
-    private bool _isShooting = false;
+    private Vector3 _slingshotPos;
     private Vector3 _defaultPelletPos;
     private Quaternion _defaultPelletRot;
-
-    [SerializeField]
-    private float _distAheadOffset = 0.5f;
-    private float _pullbackPercent = 0f;
+    private bool _isShooting = false
 
     private void Awake()
     {
         _camera = GetComponentInParent<Camera>();
-        _pelletLocalOrigin = Pellet.transform.localPosition;
+        
         _pellet = CreatePellet(transform, Pellet.transform);
+        _pelletLocalOrigin = Pellet.transform.localPosition;
         _slingshotPos = new Vector3(0f, -0.2f, 0.3f);
         _defaultPelletPos = _pellet.transform.localPosition;
         _defaultPelletRot = _pellet.transform.localRotation;
-    }
-
-    private float _screenAspect = 1f;
-    private float _distAhead = 1.84f;
-    private void Start()
-    {
-        //SetSlingshotInFrontOfCamera();
     }
 
     private void Update()
@@ -44,6 +34,8 @@ public class Slingshot : MonoBehaviour
             _pellet.transform.localPosition = _defaultPelletPos;
             _pellet.transform.localRotation = _defaultPelletRot;
         }
+        
+        // 터치 시 레이캐스트로 맞은 타겟 정보 받아온 후 총알일 시 발사
         if(Input.touchCount > 0)
         {
             RaycastHit hit;
@@ -64,6 +56,7 @@ public class Slingshot : MonoBehaviour
         }
     }
 
+    // 총알 생성
     static Pellet CreatePellet(Transform parent,Transform pelletInfo)
     {
         Transform pelletWorldTransform = Instantiate(pelletInfo, pelletInfo.position, pelletInfo.rotation, pelletInfo.parent);
