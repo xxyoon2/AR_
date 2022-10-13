@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Target
   - Pellet
+  - Slingshot
   layers:
   - Default
   - TransparentFX

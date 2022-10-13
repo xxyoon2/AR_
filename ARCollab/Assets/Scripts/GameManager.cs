@@ -10,6 +10,8 @@ public class GameManager : SingletonBehaviour<GameManager>
     // 오브젝트가 사용자와 상호작용할 수 있는지를 전달하는 이벤트
     public UnityEvent<bool> CanObjectInteraction = new UnityEvent<bool>();
 
+    public UnityEvent RespawnPellet = new UnityEvent();
+
     public Vector3 PlayerPos
     {
         get
@@ -56,5 +58,11 @@ public class GameManager : SingletonBehaviour<GameManager>
             _isUserCloseToObject = false;
         }
         CanObjectInteraction.Invoke(_isUserCloseToObject);
+    }
+
+    public void PelletSpawn()
+    {
+        Debug.Log("소환해요");
+        RespawnPellet.Invoke();
     }
 }
