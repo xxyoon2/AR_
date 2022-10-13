@@ -26,15 +26,17 @@ public class PlayerInput : MonoBehaviour, IInput
         }
 
         Touch touch = Input.GetTouch(0);
-
+        // 터치
         if (touch.phase == TouchPhase.Began)
         {
-            if (Tab(0))
+            layerMask = LayerInfo("Object");
+            if (Tab(layerMask))
             {
                 hit.transform.GetComponent<Tiger>()?.Die();
             }
         }
-        // if(드래그인지 판단) { }
+        //드래그
+        // if (TouchPhase.Moved) { }
     }
 
     /// <summary>
@@ -54,7 +56,7 @@ public class PlayerInput : MonoBehaviour, IInput
     // 터치해서 만약 오브젝트가 있다면 true, 없다면 false 반환하는 형태로 가야할지
     public bool Tab()
     {
-        return Tab(0);
+        return Tab(1);
     }
 
     public bool Tab(int layerMask)
