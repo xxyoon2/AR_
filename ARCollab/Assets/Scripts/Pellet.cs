@@ -9,6 +9,7 @@ public class Pellet : MonoBehaviour
     private SphereCollider _sphereCollider = null;
 
     private float _speed = 0;
+    private Vector3 _defaultPos;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class Pellet : MonoBehaviour
 
     }
 
+
     public void removeAllForces()
     {
         if (_rigidBody == null) return;
@@ -33,12 +35,8 @@ public class Pellet : MonoBehaviour
     {
         if (_rigidBody == null) return;
 
-        // _isAirborne = true;
         _speed = 50f * speedPercent;
-
-        Vector3 force = transform.forward;
-
-        _rigidBody.AddForce(force, ForceMode.Impulse);
+        _rigidBody.AddForce(0, _speed, 200);
     }
     private void OnCollisionEnter(Collision collision)
     {
