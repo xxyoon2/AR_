@@ -10,9 +10,10 @@ public interface IInput
     public void Drag();
 }
 
-public abstract class PlayerInput : MonoBehaviour, IInput
+public class PlayerInput : MonoBehaviour, IInput
 {
     private Ray ray;
+    private RaycastHit hit;
     private int layerMask;
 
     public float distance = 5f;
@@ -24,15 +25,16 @@ public abstract class PlayerInput : MonoBehaviour, IInput
             return;
         }
 
-        if (true)
-        {
-            Tab();
-        }
+        Touch touch = Input.GetTouch(0);
 
-        if (true)
+        if (touch.phase == TouchPhase.Began)
         {
-            Drag();
+            if (Tab(0))
+            {
+                hit.transform.GetComponent<Tiger>()?.Die();
+            }
         }
+        // if(드래그인지 판단) { }
     }
 
     /// <summary>
@@ -54,11 +56,12 @@ public abstract class PlayerInput : MonoBehaviour, IInput
     {
         return Tab(0);
     }
+
     public bool Tab(int layerMask)
     {
         ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 
-        if (Physics.Raycast(ray, distance, layerMask))
+        if (Physics.Raycast(ray, out hit, distance, layerMask))
         {
             return true;
         }
