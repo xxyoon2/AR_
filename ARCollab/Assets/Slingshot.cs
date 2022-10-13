@@ -14,7 +14,7 @@ public class Slingshot : MonoBehaviour
     private Vector3 _slingshotPos;
     private Vector3 _defaultPelletPos;
     private Quaternion _defaultPelletRot;
-    private bool _isShooting = false
+    private bool _isShooting = false;
 
     private void Awake()
     {
