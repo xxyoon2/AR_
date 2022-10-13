@@ -26,6 +26,31 @@ public class PlayerInput : MonoBehaviour, IInput
         }
 
         Touch touch = Input.GetTouch(0);
+        layerMask = LayerInfo("Object");
+
+        switch (touch.phase)
+        {
+            case TouchPhase.Began:
+                if (Tab(layerMask))
+                {
+                    hit.transform.GetComponent<Tiger>()?.Die();
+                }
+                break;
+            case TouchPhase.Moved:
+                if (Tab(layerMask))
+                {
+                    // 오브젝트 움직이기 위한 코루틴 호출
+                    // 근데 굳이 코루틴이 필요할까...?
+                }
+                break;
+            case TouchPhase.Ended:
+                if (Tab(layerMask))
+                {
+                    // 이전  phase가 move였다면 코루틴 중단
+                }
+                break;
+        }
+        /*
         // 터치
         if (touch.phase == TouchPhase.Began)
         {
@@ -36,7 +61,14 @@ public class PlayerInput : MonoBehaviour, IInput
             }
         }
         //드래그
-        // if (TouchPhase.Moved) { }
+        if (touch.phase == TouchPhase.Moved)
+        {
+            layerMask = LayerInfo("Default");
+            if (Tab(layerMask))
+        }
+
+        if (touch.)
+        */
     }
 
     /// <summary>
@@ -75,6 +107,6 @@ public class PlayerInput : MonoBehaviour, IInput
 
     public void Drag()
     {
-        // 이것도 레이를 그려야하나?
+        
     }
 }
