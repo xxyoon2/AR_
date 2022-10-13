@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Samples/ARCore Extensions/1.33.0/Geospatial Sample/Scenes/Geospatial.unity
     guid: 1ed15e9657253406185e4b2c7c5a4fc4
+  - enabled: 1
+    path: Assets/Scenes/Placing tiger in the forward.unity
+    guid: 30d04c5c2c40cd2498fdcdd24a93e47d
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 1566237d258173f4692b2acde6081c4c, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: a00de73535f30e84fa55c3ea6f4981e3, type: 2}
