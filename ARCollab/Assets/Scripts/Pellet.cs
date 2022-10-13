@@ -23,12 +23,7 @@ public class Pellet : MonoBehaviour
 
     }
 
-    public void removeAllForces()
-    {
-        if (_rigidBody == null) return;
-        _rigidBody.velocity = Vector3.zero;
-    }
-    
+    // 컴포넌트에 rigidBody가 포함되어 있지 않으면 총알 발사
     public void ShootWithSpeedAtCurrentRotation(float speedPercent)
     {
         if (_rigidBody == null) return;
@@ -37,6 +32,7 @@ public class Pellet : MonoBehaviour
         _rigidBody.AddForce(0, _speed, 200);
     }
     
+    // 타겟과 충돌 시 비활성화
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Target")
